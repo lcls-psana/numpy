@@ -19,15 +19,12 @@ from SConsTools.standardExternalPackage import standardExternalPackage
 # giving some or all parameters.
 #
 
-pkg = "numpy"
+pkg     = "numpy"
 pkg_ver = "1.9.2"
 
-PREFIX = pjoin('$SIT_EXTERNAL_SW', pkg, pkg_ver)
-
-libdir = 'lib'
-PYDIR = pjoin(libdir, '$PYTHON', "site-packages", pkg)
-PYDIRSEP = True
-INCDIR = pjoin(PYDIR, "core", "include", pkg)
+PREFIX  = pjoin('$SIT_EXTERNAL_SW', pkg, pkg_ver)
+PYDIR   = pjoin('lib', '$PYTHON', "site-packages")
+INCDIR  = pjoin(PYDIR, pkg, "core", "include", pkg)
 PKGINFO = (pkg, pkg_ver, '$PYTHON', '$SIT_ARCH.found')
 
 standardExternalPackage(pkg, **locals())
