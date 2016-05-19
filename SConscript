@@ -19,12 +19,11 @@ from SConsTools.standardExternalPackage import standardExternalPackage
 # giving some or all parameters.
 #
 
-pkg     = "numpy"
-pkg_ver = "1.9.2"
+assert env.get('CONDA', False), "not conda build"
 
-PREFIX  = pjoin('$SIT_EXTERNAL_SW', pkg, pkg_ver)
-PYDIR   = pjoin('lib', '$PYTHON', "site-packages")
-INCDIR  = pjoin(PYDIR, pkg, "core", "include", pkg)
-PKGINFO = (pkg, pkg_ver, '$PYTHON', '$SIT_ARCH.found')
+pkg     = "numpy"
+
+# link in header files
+INCDIR  = pjoin('$CONDA_ENV_PATH', 'lib', '$PYTHON', 'site-packages', pkg, 'core', 'include', pkg)
 
 standardExternalPackage(pkg, **locals())
